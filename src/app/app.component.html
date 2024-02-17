@@ -1,1 +1,13 @@
 <p>asdasd</p>
+
+<h2>Lista kategorii</h2>
+<ul>
+    <li *ngFor="let kategoria of listaKategorii.categories">
+        {{ kategoria.id }} - {{ kategoria.lang_data[0].plural_name }}
+    </li>
+</ul>
+<!--
+<img src="{{ listaProduktow.results[1].productImages[0].productImageMediumUrl }}" class="male-zdjecie">
+-->
+<input [(ngModel)]="szukajId">
+<button (click)="getDescriptions()">Szukaj</button>
