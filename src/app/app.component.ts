@@ -35,6 +35,17 @@ export class AppComponent implements OnInit{
     'Access-Control-Allow-Methods': 'GET',
     'Access-Control-Allow-Origin': '*'
   });
+
+
+  header4 = new HttpHeaders({
+    'x-api-key': this.key,
+    'resultsLimit': '50',
+    'Access-Control-Allow-Headers': 'Content-Type',
+    'Access-Control-Allow-Methods': 'GET',
+    'Access-Control-Allow-Origin': '*'
+  });
+  
+
   header2 = new HttpHeaders({
     'x-api-key': this.key, 
     'type': '2',
@@ -65,12 +76,13 @@ export class AppComponent implements OnInit{
 
 
   getProducts() {
-    this.http.get(this.productUrl, {headers: this.header})
+    this.http.get(this.productUrl, {headers: this.header4})
     .pipe(catchError(this.handleError))
     .subscribe(data => {
       this.listaProduktow = data;
       console.log(data);
     });
+    console.log('products loaded');
   }
   
 
@@ -95,7 +107,7 @@ export class AppComponent implements OnInit{
       .then(
         res => {
           console.log('ok');
-          resolve();
+          //resolve();
         }
       );
     });
@@ -130,8 +142,7 @@ export class AppComponent implements OnInit{
   ngOnInit(): void {
 
       console.log('działam!');
-      this.getCategories();
-      this.getDescriptions();
+      this.getProducts();
      // this.goPresta();
 }
 }
